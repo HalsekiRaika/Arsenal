@@ -1,5 +1,6 @@
 plugins {
 	id 'maven-publish'
+	id 'scala'
 	alias libs.plugins.quilt.loom
 }
 
@@ -8,6 +9,8 @@ version = "${project.version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
 repositories {
+	mavenCentral()
+
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -20,6 +23,7 @@ repositories {
 dependencies {
 	minecraft libs.minecraft
 	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
+	implementation('org.scala-lang:scala-library:2.13.10')
 	// Replace the above line with the block below if you want to use Mojang mappings as your primary mappings, falling back on QM for parameters and Javadocs
 	/*
 	mappings loom.layered {
